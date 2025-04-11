@@ -482,6 +482,13 @@ if (!empty($_SESSION['4M8e7M5b1R2e8s']) && !empty($user) && $statut_compte_oo >=
             </div>
 
             <!-- Add this container for dynamic forms -->
+            <!-- Part 1: Project Type Form -->
+            <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
+              <div class="col-md-12">
+                <h4 class="subtitle-form">Part 1: Informations du projet</h4>
+              </div>
+            </div>
+            
             <div id="dynamic-form-container">
               <?php
               // Include the form based on the current project selection (for initial load or page refresh)
@@ -490,6 +497,13 @@ if (!empty($_SESSION['4M8e7M5b1R2e8s']) && !empty($user) && $statut_compte_oo >=
               ?>
             </div>
 
+            <!-- Part 2: User Category Form -->
+            <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
+              <div class="col-md-12">
+                <h4 class="subtitle-form">Part 2: Informations spécifiques à votre profil</h4>
+              </div>
+            </div>
+            
             <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
               <div class="col-md-3">
                 <label for="departement">Département</label>
