@@ -440,7 +440,7 @@ if (!empty($_SESSION['4M8e7M5b1R2e8s']) && !empty($user) && $statut_compte_oo >=
                 <label for="projet">Mon projet</label>
               </div>
               <div class="col-md-9">
-                <select id="projet" name="projet" class="form-control" onchange="loadDynamicForm()">
+                <select id="projet" name="projet" class="form-control">
                   <option value=""> Choisir un projet </option>
                   <option value="1" <?php if ($projet == 1) {
                                       echo "selected";
