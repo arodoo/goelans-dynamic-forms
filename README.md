@@ -1,166 +1,140 @@
-# README – Form Generator Instructions for "vente_activite.php" (Page 5 PP)
+# README – Form Generator Instructions for "location_logement.php" (Page 7 PP)
 
 ## FORM ASSIGNMENT
 
-**Filename:** `vente_activite.php`  
-**Form ID:** 5
+**Filename:** `location_logement.php`  
+**Form ID:** 7
 
 ---
 
 ## GENERAL RULES
 
-- All labels must remain in **French**.
-- Use **Bootstrap-style layout**: define each row and column using responsive classes such as `mb-4`, `mb-6`, `mb-12`.
-- Each input field must include an HTML `name` attribute matching the lowercase snake_case version of its label.
-- Group related fields logically (e.g., address + quartier in the same row).
-- Use checkboxes, dropdowns or date inputs where appropriate.
-- Support autocompletion or dropdowns for juridical statuses and activity types where applicable.
+- All field **labels must remain in French**.
+- The form contains **10 rows**, each with a specific structure (1 to 3 columns).
+- Use Bootstrap-style classes for layout (`mb-4`, `row`, etc.).
+- Field names must follow `snake_case` based on the French label.
 
 ---
 
-## FORM STRUCTURE (12 Rows)
+## FORM STRUCTURE (10 Rows)
 
-### 🔹 **Row 1** – Full Width  
-- `div class="row mb-12"`  
-  - Label: **"Commune"**  
+### 🔹 Row 1 – Single Column
+- `div class="row mb-4"`
+  - Label: **"Commune"**
   - Input type: `text`
 
 ---
 
-### 🔹 **Row 2** – 3 Columns  
-- `div class="row mb-4"`  
-  - Column 1: **"Quartier"** → `text_input`  
-  - Column 2: **"Num"** → `text_input`  
+### 🔹 Row 2 – 3 Columns
+- `div class="row mb-4"`
+  - Column 1: **"Quartier"** → `text_input`
+  - Column 2: **"N"** → `text_input` (for street number)
   - Column 3: **"Adresse"** → `text_input`
 
 ---
 
-### 🔹 **Row 3** – 2 Columns  
-- `div class="row mb-4"`  
-  - Column 1: **"Locaux disponible à partir de"** → `date_input` (format: `dd/mm/yyyy`)  
-  - Column 2: Empty / Reserved
+### 🔹 Row 3 – 3 Columns
+- `div class="row mb-4"`
+  - Column 1: **"Logement vide"** → `checkbox`
+  - Column 2: **"Disponible à partir de"** → `date_input` (format: `dd/mm/yyyy`)
+  - Column 3: **"Logement habité à sous louer"** → `checkbox`
 
 ---
 
-### 🔹 **Row 4** – 3 Columns  
-- `div class="row mb-4"`  
-  - Column 1: **"Statut juridique"** → `dropdown` (use standard French legal statuses)  
-  - Column 2: **"Raison sociale"** → `text_input`  
-  - Column 3: **"Enseigne"** → `text_input`
+### 🔹 Row 4 – Single Column
+- `div class="row mb-4"`
+  - Label: **"Type de Bail / Contrat"**
+  - Input type: `dropdown`
+  - Options:
+    - Bail d'habitation vide (3 ans renouvelable)
+    - Bail meublé (1 an renouvelable ou 9 mois pour étudiant)
+    - Bail mobilité (1 à 10 mois)
+    - Sous location
+    - Colocation
 
 ---
 
-### 🔹 **Row 5** – Transmission Modalities + Project Type  
-- `div class="row mb-4"`  
-  - Label: `"Modalité de transmission"`  
-  - Use a vertical `checkbox group` for the following options:
-    - Apport d'actifs  
-    - Apport en société  
-    - Cession à un fonds d'investissement ou un partenaire stratégique  
-    - Cession de fonds de commerce  
-    - Cession de licence  
-    - Cession de titres  
-    - Cession progressive  
-    - Fusion - absorption  
-    - Scission
-  - Below or adjacent, display a **tag-like multi-select** or vertical checkboxes for:
-    - Artisan  
-    - Association  
-    - Commerce  
-    - Bureau  
-    - Entreprise
+### 🔹 Row 5 – 2 Columns
+- `div class="row mb-4"`
+  - Column 1: **"Loyer (Hors charges et frais)"**
+    - Input type: `number_input`
+    - Suffix: `€/mois`
+  - Column 2: **"Charges"**
+    - Input type: `number_input`
+    - Suffix: `€/mois`
 
 ---
 
-### 🔹 **Row 6** – Nature of Activity  
-- `div class="row mb-4"`  
-  - Label: **"Nature de l'activité"**  
-  - Input type: `dropdown` with options:
-    - Local vide / aménageable  
-    - En activité  
-    - Autres
+### 🔹 Row 6 – 3 Columns
+- `div class="row mb-4"`
+  - Column 1: **"Loyer (Charges comprises)"** → `number_input`, suffix: `€/mois`
+  - Column 2: **"Dépôt de garantie"** → `number_input`, suffix: `mois`
+  - Column 3: **"Superficie"** → `number_input`, suffix: `m²`
 
 ---
 
-### 🔹 **Row 7** – 2 Columns  
-- `div class="row mb-4"`  
-  - Column 1: **"Superficie (m²)"** → `number_input`, min: 0  
-  - Column 2: **"État général"** → `dropdown` with options:
-    - Neuf  
-    - Rénové  
+### 🔹 Row 7 – Single Column
+- `div class="row mb-4"`
+  - Label: **"État général"**
+  - Input type: `dropdown`
+  - Options:
+    - Neuf
+    - Rénové
     - À rénover
 
 ---
 
-### 🔹 **Row 8** – License Requirements  
-- `div class="row mb-4"`  
-  - Label: **"Licences et autorisations nécessaires pour l'exploitation"**  
-  - Input: `textarea` or rich text field
+### 🔹 Row 8 – 3 Columns
+- `div class="row mb-4"`
+  - Label: **"Stationnements"**
+  - Column 1: **"Nombre"** → `number_input`
+  - Column 2: **"Possible"** → `checkbox`
+  - Column 3: **"Public"** → `checkbox`
 
 ---
 
-### 🔹 **Row 9** – Intellectual Property  
-- `div class="row mb-4"`  
-  - Label: **"Cession de propriété intellectuelle"**  
-  - Checkbox options:
-    - Marque  
-    - Brevet  
-    - Nom de domaine
-
----
-
-### 🔹 **Row 10** – Staff Details  
-- `div class="row mb-4"`  
-  - Three checkboxes with labels:
-    - **"Effectif en CDI"**  
-    - **"Effectif en CDD"**  
-    - **"Effectif en intérim"**
-  - Each checkbox should be followed by a `number_input` (optional) if count is provided.
-
----
-
-### 🔹 **Row 11** – Parking Information  
-- `div class="row mb-4"`  
-  - Label: **"Stationnements"**  
-  - Subfields:
-    - **"Nombre"** → `number_input`  
-    - **"Possible"** → `checkbox`  
-    - **"Public"** → `checkbox`
-
----
-
-### 🔹 **Row 12** – Accessibility  
-- `div class="row mb-4"`  
-  - Label: **"Accessibilité"**  
-  - Use 3 checkboxes:
-    - Ascenseur commun  
-    - PMR  
+### 🔹 Row 9 – Accessibility Options
+- `div class="row mb-4"`
+  - Label: **"Accessibilité"**
+  - Checkboxes (3 total):
+    - Ascenseur commun
+    - Niveau étage
     - Plein pied
+
+---
+
+### 🔹 Row 10 – Text Area
+- `div class="row mb-4"`
+  - Label: *(none specified, acts as free-form comment box)*
+  - Input type: `textarea`  
+  - Placeholder: `"Commentaires, précisions, ou conditions supplémentaires..."`
 
 ---
 
 ## VALIDATION RULES
 
-- All text inputs must accept UTF-8 characters.
-- "Superficie" and "Effectif" must be positive integers.
-- Dates must use strict `dd/mm/yyyy` format and prevent future dates if not allowed.
-- Dropdowns must always include a default option: `-- sélectionnez --`.
-- Checkbox groups must support multiple selections.
-- Field names must be consistent with their labels using `snake_case`.
+- All numeric fields must accept only positive values (`min=0`).
+- Date must follow strict `dd/mm/yyyy` format.
+- Text fields must accept UTF-8 characters and be trimmed.
+- Dropdowns must include default option: `-- sélectionnez --`.
+- Checkboxes must return `true/false` or `1/0`.
 
 ---
 
-## VISUAL AND UX CONSIDERATIONS
+## VISUAL & UX CONSIDERATIONS
 
-- Use clear section dividers or card components to separate rows 1–4 (header info), 5–6 (project data), and 7–12 (technical/property data).
-- Use tooltips or help icons for complex terms like “Statut juridique”, “Licences”, or “Cession”.
-- Mobile responsive behavior is required.
-- For large groups of checkboxes (like in Row 5), use a collapsible section.
+- Group all address-related fields (Rows 1–2) under a collapsible “Localisation” section.
+- Show monetary fields with clear suffixes (`€/mois`) and visual grouping.
+- Use labels and placeholders in **French only**.
+- Checkbox rows should be grouped visually (e.g., accessibilité and stationnements).
+- Make the text area expandable on focus.
 
 ---
 
 ## ADDITIONAL NOTES
 
-- No file uploads or URLs required in this form version.
-- Publication formatting (1/4, 1/2 page, etc.) **is not required** for this form.
-- This form is meant for internal capture and processing of business or property sale intents.
+- This form does **not require** images, file uploads or external links.
+- The form is intended for use by property owners or managers (bailleurs).
+- Legal notices or tooltips may be added for sensitive fields like "type de bail" or "charges".
+
+
