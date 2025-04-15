@@ -1,11 +1,38 @@
 <?php
 // Formulaire pour la création d'activité (option 4)
 ?>
-<div class="form-section">
+<div class="form-section">  <!-- Section 4.0 - Sélection du type de démarche -->
+  <div class="row mb-4 pb-3" style="border-bottom: 1px solid #eeeded">
+    <div class="col-12 mb-3">
+      <h4>Création d'activité</h4>
+      <p>Veuillez sélectionner l'option qui correspond à votre situation :</p>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="type_demarche" id="option_candidat" value="candidat" <?php echo (!isset($type_demarche) || $type_demarche == 'candidat') ? 'checked' : ''; ?>>
+          <label class="form-check-label" for="option_candidat">
+            Je suis candidat à l'aventure ou je souhaite créer mon activité
+          </label>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" name="type_demarche" id="option_projet" value="projet" <?php echo (isset($type_demarche) && $type_demarche == 'projet') ? 'checked' : ''; ?>>
+          <label class="form-check-label" for="option_projet">
+            Je soumets mon projet et fais appel aux mains tendues
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Section 4.1 - Description du Projet -->
   <div class="row mb-4 pb-3" style="border-bottom: 1px solid #eeeded">
     <div class="col-12 mb-3">
-      <h4>Je suis candidat à l'aventure ou je souhaite créer mon activité</h4>
+      <h5>Description de votre projet</h5>
     </div>
     <div class="col-md-12">
       <textarea id="description_projet" name="description_projet" class="form-control" rows="6" placeholder="Décrivez votre projet de création d'activité en détail..."><?php echo isset($description_projet) ? $description_projet : ''; ?></textarea>

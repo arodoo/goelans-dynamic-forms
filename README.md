@@ -1,139 +1,166 @@
-# README – Form Generator Instructions for "PP - P1b.pdf"
-
-## General Description
-
-This form allows a user to declare and promote a local or professional initiative depending on their role (e.g., commune, business, association, or artisan). It supports showcasing activities, collaborations, resources, and location-related details. The form is multilingual in nature, but all interface fields should preserve the **original French labels** as shown in the mockup.
-
----
+# README – Form Generator Instructions for "vente_activite.php" (Page 5 PP)
 
 ## FORM ASSIGNMENT
 
-This form is associated with:
-
-**Filename:** `developpement_commune.php`  
-**Form ID:** 1
+**Filename:** `vente_activite.php`  
+**Form ID:** 5
 
 ---
 
-## FORM STRUCTURE
+## GENERAL RULES
 
-### Section 1: General Information (Header Fields)
-
-All fields should allow free-form input unless noted.
-
-- **Label:** "Objet" — `textarea`
-  - Description field for the project’s purpose or vision.
-
-- **Label:** "Je veux faire rayonner, développer ma commune, mon entreprise, mon projet" — `info_label`  
-  - No input field; acts as motivation text.
-
-- **Label:** "Locaux disponible à partir de" — `date_input` (format: dd/mm/yyyy)
-
-- **Label:** "Raison sociale" — `text_input`
-
-- **Label:** "Statut juridique" — `dropdown` (preset list if available, else text)
-
-- **Label:** "Commune" — `text_input`
-
-- **Label:** "N° adresse / Quartier" — `text_input`
-
-- **Label:** "Enseigne" — `text_input`
+- All labels must remain in **French**.
+- Use **Bootstrap-style layout**: define each row and column using responsive classes such as `mb-4`, `mb-6`, `mb-12`.
+- Each input field must include an HTML `name` attribute matching the lowercase snake_case version of its label.
+- Group related fields logically (e.g., address + quartier in the same row).
+- Use checkboxes, dropdowns or date inputs where appropriate.
+- Support autocompletion or dropdowns for juridical statuses and activity types where applicable.
 
 ---
 
-### Section 2: Type of Project (Multiple Choice + Conditional Blocks)
+## FORM STRUCTURE (12 Rows)
 
-**Type Selector (Radio buttons, required):**
-
-- Nature du projet:
-  - COMMUNE
-  - ENTREPRISE / COMMERCE
-  - ARTISAN
-  - ASSOCIATION
-
-Depending on the selection, show the relevant subform:
-
-#### A. If "COMMUNE":
-- **Checkboxes:**
-  - "Appel aux bénévoles / Actions collectives"
-  - "Création d'une structure (école, résidence, ...), d'un local commercial, d'un pôle santé, pharmacie"
-  - "Location gérance du fonds de commerce (1)"
-  - "Recherche de partenaire"
-  - "Exposer mon autre projet"
-
-#### B. If "ENTREPRISE / COMMERCE":
-- **Checkboxes:**
-  - "Proposer durablement une Alliance, une Coopération, un Partenariat, la création d'une filiale, Devenir franchiseur, diversification d'activité"
-  - "Recherche occasionnelle d'un formateur, d'un fournisseur, d'un prestataire, d'un vendeur, sous-traiter une partie de mon activité"
-  - "Mettre en avant ma création d'activité, mes nouveautés, mon savoir-faire"
-  - "Exposer mon autre projet"
-
-#### C. If "ARTISAN":
-- **Checkboxes:**
-  - "Présentation de mon activité, mes créations, mes services, ma formation"
-  - "Proposer durablement une Alliance, une Coopération, un Partenariat"
-  - "Recherche d'outils, de matériels, matières premières, de compétences"
-  - "Exposer mon autre projet"
-
-#### D. If "ASSOCIATION":
-- **Checkboxes:**
-  - "Présentation des valeurs, des missions et des actions, Projets en cours, Evènements"
-  - "Appels aux adhésions"
-  - "Proposer durablement une Alliance, une Coopération, un Partenariat"
-  - "Recherche occasionnelle d'un formateur, d'un fournisseur, d'un prestataire, d'un vendeur, sous-traiter une partie de mon activité"
-  - "Exposer mon autre projet"
+### 🔹 **Row 1** – Full Width  
+- `div class="row mb-12"`  
+  - Label: **"Commune"**  
+  - Input type: `text`
 
 ---
 
-### Section 3: Metadata and Smart Fields
-
-- **SIRET integration (optional):**
-  - If user inputs a valid SIRET number, auto-fill business data via API.
-  - Display note: `"Incrémentation des informations saisies à l'inscription. Si SIRET (toutes infos enregistrées en API)"`
-
----
-
-### Section 4: Media and Extended Content
-
-- **Image Upload:** Allow up to 4 photos, accepted formats: JPG, PNG, max 5MB per image.
-
-- **URL Fields:** Allow 2 optional URL fields for external websites.
-
-- **Free Text:** Large `textarea` for additional comments or explanation.
+### 🔹 **Row 2** – 3 Columns  
+- `div class="row mb-4"`  
+  - Column 1: **"Quartier"** → `text_input`  
+  - Column 2: **"Num"** → `text_input`  
+  - Column 3: **"Adresse"** → `text_input`
 
 ---
 
-### Section 5: Publication Options
+### 🔹 **Row 3** – 2 Columns  
+- `div class="row mb-4"`  
+  - Column 1: **"Locaux disponible à partir de"** → `date_input` (format: `dd/mm/yyyy`)  
+  - Column 2: Empty / Reserved
 
-- **After choosing a project type or filling one of the "aide" checkboxes**, show format selector:
+---
 
-  - 1/4 page — advanced features, 2 photos, 1 URL
-  - 1/2 page — advanced features, 4 photos, 2 URLs
-  - 1 page — advanced features, 10 photos, 5 URLs
+### 🔹 **Row 4** – 3 Columns  
+- `div class="row mb-4"`  
+  - Column 1: **"Statut juridique"** → `dropdown` (use standard French legal statuses)  
+  - Column 2: **"Raison sociale"** → `text_input`  
+  - Column 3: **"Enseigne"** → `text_input`
+
+---
+
+### 🔹 **Row 5** – Transmission Modalities + Project Type  
+- `div class="row mb-4"`  
+  - Label: `"Modalité de transmission"`  
+  - Use a vertical `checkbox group` for the following options:
+    - Apport d'actifs  
+    - Apport en société  
+    - Cession à un fonds d'investissement ou un partenaire stratégique  
+    - Cession de fonds de commerce  
+    - Cession de licence  
+    - Cession de titres  
+    - Cession progressive  
+    - Fusion - absorption  
+    - Scission
+  - Below or adjacent, display a **tag-like multi-select** or vertical checkboxes for:
+    - Artisan  
+    - Association  
+    - Commerce  
+    - Bureau  
+    - Entreprise
+
+---
+
+### 🔹 **Row 6** – Nature of Activity  
+- `div class="row mb-4"`  
+  - Label: **"Nature de l'activité"**  
+  - Input type: `dropdown` with options:
+    - Local vide / aménageable  
+    - En activité  
+    - Autres
+
+---
+
+### 🔹 **Row 7** – 2 Columns  
+- `div class="row mb-4"`  
+  - Column 1: **"Superficie (m²)"** → `number_input`, min: 0  
+  - Column 2: **"État général"** → `dropdown` with options:
+    - Neuf  
+    - Rénové  
+    - À rénover
+
+---
+
+### 🔹 **Row 8** – License Requirements  
+- `div class="row mb-4"`  
+  - Label: **"Licences et autorisations nécessaires pour l'exploitation"**  
+  - Input: `textarea` or rich text field
+
+---
+
+### 🔹 **Row 9** – Intellectual Property  
+- `div class="row mb-4"`  
+  - Label: **"Cession de propriété intellectuelle"**  
+  - Checkbox options:
+    - Marque  
+    - Brevet  
+    - Nom de domaine
+
+---
+
+### 🔹 **Row 10** – Staff Details  
+- `div class="row mb-4"`  
+  - Three checkboxes with labels:
+    - **"Effectif en CDI"**  
+    - **"Effectif en CDD"**  
+    - **"Effectif en intérim"**
+  - Each checkbox should be followed by a `number_input` (optional) if count is provided.
+
+---
+
+### 🔹 **Row 11** – Parking Information  
+- `div class="row mb-4"`  
+  - Label: **"Stationnements"**  
+  - Subfields:
+    - **"Nombre"** → `number_input`  
+    - **"Possible"** → `checkbox`  
+    - **"Public"** → `checkbox`
+
+---
+
+### 🔹 **Row 12** – Accessibility  
+- `div class="row mb-4"`  
+  - Label: **"Accessibilité"**  
+  - Use 3 checkboxes:
+    - Ascenseur commun  
+    - PMR  
+    - Plein pied
 
 ---
 
 ## VALIDATION RULES
 
-- All text inputs must trim whitespace and support UTF-8 encoding.
-- Dates must be validated in `dd/mm/yyyy` format.
-- Checkbox groups must allow multiple selections.
-- If no project type is selected, prevent form submission.
+- All text inputs must accept UTF-8 characters.
+- "Superficie" and "Effectif" must be positive integers.
+- Dates must use strict `dd/mm/yyyy` format and prevent future dates if not allowed.
+- Dropdowns must always include a default option: `-- sélectionnez --`.
+- Checkbox groups must support multiple selections.
+- Field names must be consistent with their labels using `snake_case`.
 
 ---
 
-## VISUAL STRUCTURE
+## VISUAL AND UX CONSIDERATIONS
 
-- Group sections with collapsible panels by project type.
-- Use consistent layout: labels left-aligned, inputs right-aligned.
-- Use French language UI text throughout.
-- Clearly separate “header info” from project content.
+- Use clear section dividers or card components to separate rows 1–4 (header info), 5–6 (project data), and 7–12 (technical/property data).
+- Use tooltips or help icons for complex terms like “Statut juridique”, “Licences”, or “Cession”.
+- Mobile responsive behavior is required.
+- For large groups of checkboxes (like in Row 5), use a collapsible section.
 
 ---
 
-## NOTES
+## ADDITIONAL NOTES
 
-- The form must be mobile responsive.
-- All content must remain in French (labels, tooltips, selections).
-- The “Location gérance du fonds de commerce (1)” appears in both COMMUNE and ENTREPRISE. Ensure reusability of logic.
-
+- No file uploads or URLs required in this form version.
+- Publication formatting (1/4, 1/2 page, etc.) **is not required** for this form.
+- This form is meant for internal capture and processing of business or property sale intents.
