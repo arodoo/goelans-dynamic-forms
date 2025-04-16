@@ -1,217 +1,201 @@
 <?php
-// Formulaire pour la location d'équipement (option 9)
+/**
+ * Dynamic Form: Location Equipement
+ * Form ID: 10
+ * Description: Form for equipment rental declarations
+ */
 ?>
-<div class="form-section">
-  <!-- Section 9.1 - Características del Equipo -->
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="type_equipement">Type d'équipement :</label>
-    </div>
-    <div class="col-md-9">
-      <select id="type_equipement" name="type_equipement" class="form-control">
-        <option value="">-- Sélectionner --</option>
-        <option value="materiel_batiment" <?php echo (isset($type_equipement) && $type_equipement == 'materiel_batiment') ? 'selected' : ''; ?>>Matériel de bâtiment et travaux</option>
-        <option value="materiel_agricole" <?php echo (isset($type_equipement) && $type_equipement == 'materiel_agricole') ? 'selected' : ''; ?>>Matériel agricole</option>
-        <option value="vehicule_utilitaire" <?php echo (isset($type_equipement) && $type_equipement == 'vehicule_utilitaire') ? 'selected' : ''; ?>>Véhicule utilitaire</option>
-        <option value="materiel_medical" <?php echo (isset($type_equipement) && $type_equipement == 'materiel_medical') ? 'selected' : ''; ?>>Matériel médical</option>
-        <option value="materiel_informatique" <?php echo (isset($type_equipement) && $type_equipement == 'materiel_informatique') ? 'selected' : ''; ?>>Matériel informatique</option>
-        <option value="equipement_restauration" <?php echo (isset($type_equipement) && $type_equipement == 'equipement_restauration') ? 'selected' : ''; ?>>Équipement de restauration</option>
-        <option value="materiel_evenementiel" <?php echo (isset($type_equipement) && $type_equipement == 'materiel_evenementiel') ? 'selected' : ''; ?>>Matériel événementiel</option>
-        <option value="autre" <?php echo (isset($type_equipement) && $type_equipement == 'autre') ? 'selected' : ''; ?>>Autre</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="marque">Marque et modèle :</label>
-    </div>
-    <div class="col-md-9">
-      <input type="text" id="marque" name="marque" class="form-control" value="<?php echo isset($marque) ? $marque : ''; ?>">
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="annee_fabrication">Année de fabrication :</label>
-    </div>
-    <div class="col-md-3">
-      <input type="number" id="annee_fabrication" name="annee_fabrication" class="form-control" min="1900" max="<?php echo date('Y'); ?>" value="<?php echo isset($annee_fabrication) ? $annee_fabrication : ''; ?>">
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="etat">État :</label>
-    </div>
-    <div class="col-md-9">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="etat" id="etat_neuf" value="neuf" <?php echo (isset($etat) && $etat == 'neuf') ? 'checked' : ''; ?>>
-        <label class="form-check-label" for="etat_neuf">Neuf</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="etat" id="etat_bon" value="bon" <?php echo (isset($etat) && $etat == 'bon') ? 'checked' : ''; ?>>
-        <label class="form-check-label" for="etat_bon">Bon état</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="etat" id="etat_usage" value="usage" <?php echo (isset($etat) && $etat == 'usage') ? 'checked' : ''; ?>>
-        <label class="form-check-label" for="etat_usage">Usagé</label>
+
+<div class="container dynamic-form" id="location-equipement-form" data-form-id="10">
+  <form method="post" action="ajax-handler.php" enctype="multipart/form-data">
+    <input type="hidden" name="form_id" value="10">
+
+    <div class="text-center mb-4">
+      <h1>Je mets en location un outil, une machine</h1>
+      <div class="text-right">
+        <h4 class="text-primary">Case 13 sur Av Page4</h4>
       </div>
     </div>
-  </div>
-  
-  <!-- Section 9.2 - Condiciones de Alquiler -->
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="disponibilite">Disponibilité :</label>
-    </div>
-    <div class="col-md-9">
-      <select id="disponibilite" name="disponibilite" class="form-control">
-        <option value="">-- Sélectionner --</option>
-        <option value="immediate" <?php echo (isset($disponibilite) && $disponibilite == 'immediate') ? 'selected' : ''; ?>>Immédiate</option>
-        <option value="sur_demande" <?php echo (isset($disponibilite) && $disponibilite == 'sur_demande') ? 'selected' : ''; ?>>Sur demande</option>
-        <option value="date_specifique" <?php echo (isset($disponibilite) && $disponibilite == 'date_specifique') ? 'selected' : ''; ?>>À partir d'une date spécifique</option>
-      </select>
-    </div>
-  </div>
-  
-  <div id="date_disponibilite_container" class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded; display: <?php echo (isset($disponibilite) && $disponibilite == 'date_specifique') ? 'flex' : 'none'; ?>">
-    <div class="col-md-3">
-      <label for="date_disponibilite">Date de disponibilité :</label>
-    </div>
-    <div class="col-md-3">
-      <input type="date" id="date_disponibilite" name="date_disponibilite" class="form-control" value="<?php echo isset($date_disponibilite) ? $date_disponibilite : ''; ?>">
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="duree_location">Durée de location :</label>
-    </div>
-    <div class="col-md-9">
-      <select id="duree_location" name="duree_location" class="form-control">
-        <option value="">-- Sélectionner --</option>
-        <option value="heure" <?php echo (isset($duree_location) && $duree_location == 'heure') ? 'selected' : ''; ?>>À l'heure</option>
-        <option value="jour" <?php echo (isset($duree_location) && $duree_location == 'jour') ? 'selected' : ''; ?>>À la journée</option>
-        <option value="semaine" <?php echo (isset($duree_location) && $duree_location == 'semaine') ? 'selected' : ''; ?>>À la semaine</option>
-        <option value="mois" <?php echo (isset($duree_location) && $duree_location == 'mois') ? 'selected' : ''; ?>>Au mois</option>
-        <option value="longue_duree" <?php echo (isset($duree_location) && $duree_location == 'longue_duree') ? 'selected' : ''; ?>>Longue durée</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="tarif">Tarif de location :</label>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group">
-        <input type="number" id="tarif" name="tarif" class="form-control" min="0" step="0.01" value="<?php echo isset($tarif) ? $tarif : ''; ?>">
-        <div class="input-group-append">
-          <span class="input-group-text">€</span>
+
+    <!-- Section 1: Type d'équipement -->
+    <div class="card mb-4" id="type-equipement-section">
+      <div class="card-header bg-light">
+        <h2 class="mb-0">Type d'équipement</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" id="materiel_production" name="materiel_production" class="custom-control-input">
+              <label class="custom-control-label" for="materiel_production">Matériel de production</label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <select id="unite_tarif" name="unite_tarif" class="form-control">
-        <option value="heure" <?php echo (isset($unite_tarif) && $unite_tarif == 'heure') ? 'selected' : ''; ?>>/ heure</option>
-        <option value="jour" <?php echo (isset($unite_tarif) && $unite_tarif == 'jour') ? 'selected' : ''; ?>>/ jour</option>
-        <option value="semaine" <?php echo (isset($unite_tarif) && $unite_tarif == 'semaine') ? 'selected' : ''; ?>>/ semaine</option>
-        <option value="mois" <?php echo (isset($unite_tarif) && $unite_tarif == 'mois') ? 'selected' : ''; ?>>/ mois</option>
-      </select>
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="caution">Caution demandée :</label>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group">
-        <input type="number" id="caution" name="caution" class="form-control" min="0" step="0.01" value="<?php echo isset($caution) ? $caution : ''; ?>">
-        <div class="input-group-append">
-          <span class="input-group-text">€</span>
+
+    <!-- Section 2: Informations concernant la location -->
+    <div class="card mb-4" id="informations-location-section">
+      <div class="card-header bg-light">
+        <h2 class="mb-0">Informations concernant la location</h2>
+      </div>
+      <div class="card-body">
+        <!-- Row 1: Type, Modèle, Etat général -->
+        <div class="form-group row">
+          <label for="type" class="col-sm-12 col-md-2 col-form-label">Type</label>
+          <div class="col-sm-12 col-md-2">
+            <input type="text" id="type" name="type" class="form-control">
+          </div>
+
+          <label for="modele" class="col-sm-12 col-md-2 col-form-label">Modèle</label>
+          <div class="col-sm-12 col-md-2">
+            <input type="text" id="modele" name="modele" class="form-control">
+          </div>
+
+          <label for="etat_general" class="col-sm-12 col-md-2 col-form-label">Etat général</label>
+          <div class="col-sm-12 col-md-2">
+            <input type="text" id="etat_general" name="etat_general" class="form-control">
+          </div>
+        </div>
+
+        <!-- Row 2: Tarif -->
+        <div class="form-group row">
+          <label for="tarif" class="col-sm-12 col-md-2 col-form-label">Tarif</label>
+          <div class="col-sm-12 col-md-10">
+            <select id="tarif" name="tarif" class="form-control">
+              <option value="">-- sélectionnez --</option>
+              <option value="Journalier">Journalier</option>
+              <option value="Hebdomadaire">Hebdomadaire</option>
+              <option value="Mensuel">Mensuel</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 3: Durée de location -->
+        <div class="form-group row">
+          <label for="duree_location" class="col-sm-12 col-md-2 col-form-label">Durée de location</label>
+          <div class="col-sm-12 col-md-10">
+            <select id="duree_location" name="duree_location" class="form-control">
+              <option value="">-- sélectionnez --</option>
+              <option value="Journalier">Journalier</option>
+              <option value="Semaine">Semaine</option>
+              <option value="Mois">Mois</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 4: Type de Contrat -->
+        <div class="form-group row">
+          <label for="type_contrat" class="col-sm-12 col-md-2 col-form-label">Type de Contrat</label>
+          <div class="col-sm-12 col-md-10">
+            <select id="type_contrat" name="type_contrat" class="form-control">
+              <option value="">-- sélectionnez --</option>
+              <option value="Location simple">Location simple (courte durée)</option>
+              <option value="Location longue durée">Location longue durée (LLD)</option>
+              <option value="Location avec option d'achat">Location avec option d'achat (LOA)</option>
+              <option value="Crédit-Bail">Crédit-Bail</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 5: Livraison -->
+        <div class="form-group row">
+          <label class="col-sm-12 col-md-2 col-form-label">Livraison</label>
+          <div class="col-sm-12 col-md-10">
+            <div class="custom-control custom-radio d-inline-block mr-4">
+              <input type="radio" id="livraison_oui" name="livraison" value="OUI" class="custom-control-input">
+              <label class="custom-control-label" for="livraison_oui">OUI</label>
+            </div>
+            <div class="custom-control custom-radio d-inline-block mr-4">
+              <input type="radio" id="livraison_non" name="livraison" value="NON" class="custom-control-input">
+              <label class="custom-control-label" for="livraison_non">NON</label>
+            </div>
+            <div class="custom-control custom-radio d-inline-block">
+              <input type="radio" id="livraison_possible" name="livraison" value="POSSIBLE"
+                class="custom-control-input">
+              <label class="custom-control-label" for="livraison_possible">POSSIBLE</label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Additional information note -->
+    <div class="text-right">
+      <span class="text-primary">PAGE 10 PP</span>
+    </div>
+  </form>
+</div>
+
+<!-- Format de publication -->
+<div class="row mb-4">
+  <div class="col-12 mb-3">
+    <h4>Format de publication</h4>
   </div>
-  
-  <!-- Section 9.3 - Multimedia y Detalles Adicionales -->
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="photos">Photos :</label>
-    </div>
-    <div class="col-md-9">
-      <input type="file" id="photos" name="photos[]" class="form-control" multiple accept="image/*">
-      <small class="text-muted">Formats acceptés: JPG, PNG, GIF. Maximum 5 photos.</small>
-    </div>
-  </div>
-  
-  <div class="row mb-3 pb-3 align-items-center" style="border-bottom: 1px solid #eeeded">
-    <div class="col-md-3">
-      <label for="description">Description détaillée :</label>
-    </div>
-    <div class="col-md-9">
-      <textarea id="description" name="description" class="form-control" rows="4"><?php echo isset($description) ? $description : ''; ?></textarea>
-    </div>
-  </div>
-  
-  <!-- Format de publication -->
-  <div class="row mb-4">
-    <div class="col-12 mb-3">
-      <h4>Format de publication</h4>
-    </div>
-    <div class="col-md-4">
-      <div class="card p-3 format-option">
-        <input type="radio" name="format_publication" id="format_quart" value="quart" <?php echo (isset($format_publication) && $format_publication == 'quart') ? 'checked' : ''; ?>>
-        <label for="format_quart">1/4 page</label>
-        <div class="text-center">
-          <img src="../assets/img/format_quart.png" alt="Format 1/4 page" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="text-center mt-2">
-          <strong>5€ / mois</strong>
-        </div>
+  <div class="col-md-4">
+    <div class="card p-3 format-option">
+      <input type="radio" name="format_publication" id="format_quart" value="quart" <?php echo (isset($format_publication) && $format_publication == 'quart') ? 'checked' : ''; ?>>
+      <label for="format_quart">1/4 page</label>
+      <div class="text-center">
+        <img src="../assets/img/format_quart.png" alt="Format 1/4 page" class="img-fluid" style="max-height: 100px;">
+      </div>
+      <div class="text-center mt-2">
+        <strong>5€ / mois</strong>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card p-3 format-option">
-        <input type="radio" name="format_publication" id="format_demi" value="demi" <?php echo (isset($format_publication) && $format_publication == 'demi') ? 'checked' : ''; ?>>
-        <label for="format_demi">1/2 page</label>
-        <div class="text-center">
-          <img src="../assets/img/format_demi.png" alt="Format 1/2 page" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="text-center mt-2">
-          <strong>10€ / mois</strong>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3 format-option">
+      <input type="radio" name="format_publication" id="format_demi" value="demi" <?php echo (isset($format_publication) && $format_publication == 'demi') ? 'checked' : ''; ?>>
+      <label for="format_demi">1/2 page</label>
+      <div class="text-center">
+        <img src="../assets/img/format_demi.png" alt="Format 1/2 page" class="img-fluid" style="max-height: 100px;">
+      </div>
+      <div class="text-center mt-2">
+        <strong>10€ / mois</strong>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card p-3 format-option">
-        <input type="radio" name="format_publication" id="format_pleine" value="pleine" <?php echo (isset($format_publication) && $format_publication == 'pleine') ? 'checked' : ''; ?>>
-        <label for="format_pleine">1 page entière</label>
-        <div class="text-center">
-          <img src="../assets/img/format_pleine.png" alt="Format page entière" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="text-center mt-2">
-          <strong>20€ / mois</strong>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3 format-option">
+      <input type="radio" name="format_publication" id="format_pleine" value="pleine" <?php echo (isset($format_publication) && $format_publication == 'pleine') ? 'checked' : ''; ?>>
+      <label for="format_pleine">1 page entière</label>
+      <div class="text-center">
+        <img src="../assets/img/format_pleine.png" alt="Format page entière" class="img-fluid"
+          style="max-height: 100px;">
+      </div>
+      <div class="text-center mt-2">
+        <strong>20€ / mois</strong>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// Fonction pour afficher/masquer le champ de date de disponibilité
-document.addEventListener('DOMContentLoaded', function() {
-  const disponibiliteSelect = document.getElementById('disponibilite');
-  const dateContainer = document.getElementById('date_disponibilite_container');
-  
-  disponibiliteSelect.addEventListener('change', function() {
-    if (this.value === 'date_specifique') {
-      dateContainer.style.display = 'flex';
-    } else {
-      dateContainer.style.display = 'none';
-    }
+  // Form validation and dynamic behavior using jQuery
+  $(document).ready(function () {
+    // Form validation before submit
+    $('form').on('submit', function (e) {
+      let valid = true;
+
+      // Validate required fields
+      const requiredFields = ['type', 'modele', 'tarif', 'type_contrat', 'duree_location'];
+      requiredFields.forEach(function (fieldId) {
+        if (!$('#' + fieldId).val()) {
+          alert('Veuillez remplir le champ ' + $('label[for="' + fieldId + '"]').text());
+          valid = false;
+        }
+      });
+
+      // Validate livraison is selected
+      if (!$('input[name="livraison"]:checked').val()) {
+        alert('Veuillez indiquer si la livraison est possible.');
+        valid = false;
+      }
+
+      if (!valid) {
+        e.preventDefault();
+      }
+    });
   });
-});
 </script>
