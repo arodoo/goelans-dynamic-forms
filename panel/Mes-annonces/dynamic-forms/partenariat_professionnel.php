@@ -4,9 +4,7 @@
 <div class="form-section">
   <!-- Section 3.1 - Sección de Propuestas de Colaboración -->
   <div class="row mb-4">
-    <div class="col-12 mb-3">
-      <h4>Je propose des solutions d'échanges professionnelles</h4>
-    </div>
+
     <div class="col-md-3">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="type_collaboration" id="alliance" value="alliance" <?php echo (isset($type_collaboration) && $type_collaboration == 'alliance') ? 'checked' : ''; ?>>

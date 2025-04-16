@@ -1,0 +1,17 @@
+/* filepath: d:\zProyectos\01One\goelans\httpdocs\panel\Mes-annonces\dynamic-forms\styles.css */
+
+/* Dropdown highlight animation */
+@keyframes dropdownHighlight {
+  0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+  50% { box-shadow: 0 0 10px 3px rgba(255, 215, 0, 0.7); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+.dropdown-highlight {
+  border-color: gold !important;
+  animation: dropdownHighlight 1.5s ease-out;
+}
+
+.dropdown-container {
+  position: relative;
+}

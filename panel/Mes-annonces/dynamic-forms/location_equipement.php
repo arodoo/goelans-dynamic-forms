@@ -9,14 +9,6 @@
 <div class="container dynamic-form" id="location-equipement-form" data-form-id="10">
   <form method="post" action="ajax-handler.php" enctype="multipart/form-data">
     <input type="hidden" name="form_id" value="10">
-
-    <div class="text-center mb-4">
-      <h1>Je mets en location un outil, une machine</h1>
-      <div class="text-right">
-        <h4 class="text-primary">Case 13 sur Av Page4</h4>
-      </div>
-    </div>
-
     <!-- Section 1: Type d'équipement -->
     <div class="card mb-4" id="type-equipement-section">
       <div class="card-header bg-light">

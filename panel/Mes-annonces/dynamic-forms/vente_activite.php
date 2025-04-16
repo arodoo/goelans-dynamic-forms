@@ -288,11 +288,6 @@
                 </div>
             </div>
         </div>
-        
-        <div class="text-center mb-4">
-            <button type="submit" class="btn btn-primary mr-2">Soumettre</button>
-            <button type="reset" class="btn btn-secondary">Réinitialiser</button>
-        </div>
     </form>
 </div>
 
