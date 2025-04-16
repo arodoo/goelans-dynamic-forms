@@ -1,74 +1,117 @@
 <?php
 /**
  * Dynamic Form: Location Commerce
- * Form ID: 8
- * Description: Form for commercial space rental declarations
+ * Form ID: 9
+ * Description: Form for commercial rental declarations
  */
 ?>
 
-<div class="container dynamic-form" id="location-commerce-form" data-form-id="8">
+<div class="container dynamic-form" id="location-commerce-form" data-form-id="9">
   <form method="post" action="ajax-handler.php" enctype="multipart/form-data">
-    <input type="hidden" name="form_id" value="8">
+    <input type="hidden" name="form_id" value="9">
 
-    <!-- Row 1: Header -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <h2 class="text-center">Je loue, sous-loue, partage mon commerce ou mon bureau. <br>Une belle opportunité pour collaborer ensemble</h2>
+    <!-- Section 1: Options contractuelles principales -->
+    <div class="card mb-4" id="options-contractuelles-section">
+      <div class="card-header bg-light">
+        <h2 class="mb-0">Options contractuelles principales</h2>
+      </div>
+      <div class="card-body">
+        <div class="form-group row">
+          <div class="col-12">
+            <div class="custom-control custom-checkbox d-inline-block mr-4">
+              <input type="checkbox" id="option_location_gerance" name="option_location_gerance" class="custom-control-input">
+              <label class="custom-control-label" for="option_location_gerance">Location-Gérance</label>
+            </div>
+            <div class="custom-control custom-checkbox d-inline-block mr-4">
+              <input type="checkbox" id="option_location_achat" name="option_location_achat" class="custom-control-input">
+              <label class="custom-control-label" for="option_location_achat">Location-Gérance avec option d'achat</label>
+            </div>
+            <div class="custom-control custom-checkbox d-inline-block">
+              <input type="checkbox" id="option_sous_location_commerciale" name="option_sous_location_commerciale" class="custom-control-input">
+              <label class="custom-control-label" for="option_sous_location_commerciale">Sous location Local commercial</label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Section 1: Activity Information -->
-    <div class="card mb-4" id="activity-section">
+    <!-- Section 2: Informations concernant l'activité en cours -->
+    <div class="card mb-4" id="activite-section">
       <div class="card-header bg-light">
         <h2 class="mb-0">Informations concernant l'activité en cours</h2>
       </div>
       <div class="card-body">
-        <!-- Local vide, aménageable -->
+        <!-- Row 1: Local vide -->
         <div class="form-group row">
-          <div class="col-sm-12 col-md-4">
+          <div class="col-sm-12 col-md-3">
             <div class="custom-control custom-checkbox">
               <input type="checkbox" id="local_vide" name="local_vide" class="custom-control-input">
               <label class="custom-control-label" for="local_vide">Local vide, aménageable</label>
             </div>
           </div>
-          
-          <label for="nature_activite" class="col-sm-12 col-md-2 col-form-label">Nature de l'activité</label>
-          <div class="col-sm-12 col-md-6">
+        </div>
+
+        <!-- Row 2: Nature de l'activité -->
+        <div class="form-group row">
+          <label for="nature_activite" class="col-sm-12 col-md-3 col-form-label">Nature de l'activité</label>
+          <div class="col-sm-12 col-md-9">
             <select id="nature_activite" name="nature_activite" class="form-control">
               <option value="">-- sélectionnez --</option>
-              <option value="Bureau">Bureau</option>
+              <option value="Commerce">Commerce</option>
+              <option value="Artisanat">Artisanat</option>
+              <option value="Restauration">Restauration</option>
+              <option value="Services">Services</option>
+              <option value="Profession libérale">Profession libérale</option>
+              <option value="Autres">Autres</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 3: Composition du fonds -->
+        <div class="form-group row">
+          <label for="composition_fonds" class="col-sm-12 col-md-3 col-form-label">Composition du fonds</label>
+          <div class="col-sm-12 col-md-9">
+            <select id="composition_fonds" name="composition_fonds" class="form-control">
+              <option value="">-- sélectionnez --</option>
+              <option value="Clientèle">Clientèle</option>
+              <option value="Matériel">Matériel</option>
+              <option value="Droit au bail">Droit au bail</option>
+              <option value="Licence III, IV">Licence III, IV</option>
+              <option value="Stocks">Stocks</option>
             </select>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Section 2: Rental Information -->
-    <div class="card mb-4" id="rental-section">
+    <!-- Section 3: Informations concernant la location -->
+    <div class="card mb-4" id="location-section">
       <div class="card-header bg-light">
         <h2 class="mb-0">Informations concernant la location</h2>
       </div>
       <div class="card-body">
-        <!-- Row 2: Loyer / Redevance and Periodicité -->
+        <!-- Row 1: Loyer / Redevance & % du CA -->
         <div class="form-group row">
-          <label for="loyer_redevance" class="col-sm-12 col-md-3 col-form-label">Loyer (Hors charges et frais)</label>
+          <label for="loyer_redevance" class="col-sm-12 col-md-3 col-form-label">Loyer / Redevance</label>
           <div class="col-sm-12 col-md-3">
-            <div class="input-group">
-              <input type="number" id="loyer_redevance" name="loyer_redevance" class="form-control" min="0">
-              <div class="input-group-append">
-                <span class="input-group-text">€/mois</span>
-              </div>
-            </div>
-          </div>
-
-          <label for="periodicite" class="col-sm-12 col-md-2 col-form-label">Périodicité</label>
-          <div class="col-sm-12 col-md-4">
-            <select id="periodicite" name="periodicite" class="form-control">
+            <select id="loyer_redevance" name="loyer_redevance" class="form-control">
               <option value="">-- sélectionnez --</option>
               <option value="Mensuel">Mensuel</option>
               <option value="Trimestriel">Trimestriel</option>
               <option value="Annuel">Annuel</option>
             </select>
+          </div>
+          <label for="pourcentage_ca" class="col-sm-12 col-md-3 col-form-label">% du CA</label>
+          <div class="col-sm-12 col-md-3">
+            <input type="number" id="pourcentage_ca" name="pourcentage_ca" class="form-control" min="0" step="0.01">
+          </div>
+        </div>
+
+        <!-- Row 2: TVA applicable -->
+        <div class="form-group row">
+          <label for="tva_applicable" class="col-sm-12 col-md-3 col-form-label">TVA applicable %</label>
+          <div class="col-sm-12 col-md-9">
+            <input type="number" id="tva_applicable" name="tva_applicable" class="form-control" min="0" step="0.01">
           </div>
         </div>
 
@@ -78,116 +121,28 @@
           <div class="col-sm-12 col-md-9">
             <select id="type_bail" name="type_bail" class="form-control">
               <option value="">-- sélectionnez --</option>
+              <option value="Bail commercial (classique) 3-6-9">Bail commercial (classique) 3-6-9</option>
+              <option value="Bail précaire (ou dérogatoire)">Bail précaire (ou dérogatoire)</option>
               <option value="Bail professionnel">Bail professionnel</option>
-              <option value="Bail commercial">Bail commercial</option>
-              <option value="Contrat de prestation de service ou coworking">Contrat de prestation de service ou coworking</option>
+              <option value="Location-Gérance">Location-Gérance</option>
+              <option value="Sous-location commerciale">Sous-location commerciale</option>
+              <option value="Convention d'occupation précaire">Convention d'occupation précaire</option>
             </select>
           </div>
         </div>
 
-        <!-- Row 4: Fixe and Dépôt de garantie -->
+        <!-- Row 4: Durée du contrat -->
         <div class="form-group row">
-          <label for="fixe" class="col-sm-12 col-md-3 col-form-label">Fixe</label>
-          <div class="col-sm-12 col-md-3">
-            <div class="input-group">
-              <input type="number" id="fixe" name="fixe" class="form-control" min="0">
-              <div class="input-group-append">
-                <span class="input-group-text">€</span>
-              </div>
-            </div>
-          </div>
-
-          <label for="depot_garantie" class="col-sm-12 col-md-3 col-form-label">Dépôt de garantie</label>
-          <div class="col-sm-12 col-md-3">
-            <div class="input-group">
-              <input type="number" id="depot_garantie" name="depot_garantie" class="form-control" min="0">
-              <div class="input-group-append">
-                <span class="input-group-text">mois</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Row 6: Superficie and État général -->
-        <div class="form-group row">
-          <label for="superficie" class="col-sm-12 col-md-3 col-form-label">Superficie</label>
-          <div class="col-sm-12 col-md-3">
-            <div class="input-group">
-              <input type="number" id="superficie" name="superficie" class="form-control" min="0">
-              <div class="input-group-append">
-                <span class="input-group-text">m²</span>
-              </div>
-            </div>
-          </div>
-
-          <label for="etat_general" class="col-sm-12 col-md-3 col-form-label">État général</label>
-          <div class="col-sm-12 col-md-3">
-            <select id="etat_general" name="etat_general" class="form-control">
-              <option value="">-- sélectionnez --</option>
-              <option value="Neuf">Neuf</option>
-              <option value="Rénové">Rénové</option>
-              <option value="À rénover">À rénover</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 3: Additional Information -->
-    <div class="card mb-4" id="additional-section">
-      <div class="card-header bg-light">
-        <h2 class="mb-0">Caractéristiques supplémentaires</h2>
-      </div>
-      <div class="card-body">
-        <!-- Row 7: Stationnements -->
-        <div class="form-group row">
-          <label class="col-sm-12 col-md-3 col-form-label">Stationnements</label>
+          <label class="col-sm-12 col-md-3 col-form-label">Durée du contrat</label>
           <div class="col-sm-12 col-md-9">
-            <div class="form-row row">
-              <div class="col-md-4">
-                <label for="nombre_stationnements">Nombre</label>
-                <input type="number" id="nombre_stationnements" name="nombre_stationnements" class="form-control" min="0">
-              </div>
-              <div class="col-md-4">
-                <div class="custom-control custom-checkbox mt-4">
-                  <input type="checkbox" id="stationnement_possible" name="stationnement_possible" class="custom-control-input">
-                  <label class="custom-control-label" for="stationnement_possible">Possible</label>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="custom-control custom-checkbox mt-4">
-                  <input type="checkbox" id="stationnement_public" name="stationnement_public" class="custom-control-input">
-                  <label class="custom-control-label" for="stationnement_public">Public</label>
-                </div>
-              </div>
+            <div class="custom-control custom-radio d-inline-block mr-4">
+              <input type="radio" id="duree_temporaire" name="duree_contrat" value="Temporaire" class="custom-control-input">
+              <label class="custom-control-label" for="duree_temporaire">Temporaire</label>
             </div>
-          </div>
-        </div>
-
-        <!-- Row 8: Accessibilité -->
-        <div class="form-group row mt-4 mb-4">
-          <label class="col-sm-12 col-md-3 col-form-label">Accessibilité</label>
-          <div class="col-sm-12 col-md-9">
-            <div class="custom-control custom-checkbox d-inline-block mr-4">
-              <input type="checkbox" id="accessibilite_ascenseur" name="accessibilite[]" value="Ascenseur" class="custom-control-input">
-              <label class="custom-control-label" for="accessibilite_ascenseur">Ascenseur</label>
+            <div class="custom-control custom-radio d-inline-block">
+              <input type="radio" id="duree_renouvelable" name="duree_contrat" value="Renouvelable" class="custom-control-input">
+              <label class="custom-control-label" for="duree_renouvelable">Renouvelable</label>
             </div>
-            <div class="custom-control custom-checkbox d-inline-block mr-4">
-              <input type="checkbox" id="accessibilite_pmr" name="accessibilite[]" value="PMR" class="custom-control-input">
-              <label class="custom-control-label" for="accessibilite_pmr">PMR</label>
-            </div>
-            <div class="custom-control custom-checkbox d-inline-block">
-              <input type="checkbox" id="accessibilite_plein_pied" name="accessibilite[]" value="Plein pied" class="custom-control-input">
-              <label class="custom-control-label" for="accessibilite_plein_pied">Plein pied</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Row 9: Commentaires -->
-        <div class="form-group row">
-          <label for="informations_complementaires" class="col-sm-12 col-md-3 col-form-label">Informations concernant l'activité en cours</label>
-          <div class="col-sm-12 col-md-9">
-            <textarea id="informations_complementaires" name="informations_complementaires" class="form-control" rows="4" placeholder="Veuillez saisir ici toutes informations complémentaires..."></textarea>
           </div>
         </div>
       </div>
@@ -245,42 +200,42 @@
     $('form').on('submit', function (e) {
       let valid = true;
 
-      // Check numeric fields
-      const superficie = $('#superficie').val();
-      if (superficie && parseInt(superficie) < 0) {
-        alert('La superficie doit être un nombre positif.');
+      // Validate numeric fields
+      const pourcentageCa = $('#pourcentage_ca').val();
+      if (pourcentageCa && parseFloat(pourcentageCa) < 0) {
+        alert('Le pourcentage du CA doit être un nombre positif.');
         valid = false;
       }
 
-      const loyer = $('#loyer_redevance').val();
-      if (loyer && parseInt(loyer) < 0) {
-        alert('Le loyer doit être un nombre positif.');
+      const tvaApplicable = $('#tva_applicable').val();
+      if (tvaApplicable && parseFloat(tvaApplicable) < 0) {
+        alert('Le pourcentage de TVA doit être un nombre positif.');
         valid = false;
       }
 
-      const fixe = $('#fixe').val();
-      if (fixe && parseInt(fixe) < 0) {
-        alert('Le montant fixe doit être un nombre positif.');
-        valid = false;
-      }
-
-      const depot = $('#depot_garantie').val();
-      if (depot && parseInt(depot) < 0) {
-        alert('Le dépôt de garantie doit être un nombre positif.');
-        valid = false;
-      }
+      // Validate required dropdowns
+      const requiredSelects = ['nature_activite', 'composition_fonds', 'loyer_redevance', 'type_bail'];
+      requiredSelects.forEach(function(selectId) {
+        if (!$('#' + selectId).val()) {
+          alert('Veuillez sélectionner une valeur pour ' + $('label[for="' + selectId + '"]').text());
+          valid = false;
+        }
+      });
 
       if (!valid) {
         e.preventDefault();
       }
     });
 
-    // Ensure textarea expands on focus
-    $('#informations_complementaires').on('focus', function () {
-      $(this).attr('rows', 6);
-    }).on('blur', function () {
-      if (!$(this).val().trim()) {
-        $(this).attr('rows', 4);
+    // Ensure at least one option contractuelle is selected
+    $('form').on('submit', function(e) {
+      const optionsSelected = $('#option_location_gerance').is(':checked') || 
+                            $('#option_location_achat').is(':checked') || 
+                            $('#option_sous_location_commerciale').is(':checked');
+      
+      if (!optionsSelected) {
+        alert('Veuillez sélectionner au moins une option contractuelle.');
+        e.preventDefault();
       }
     });
   });
