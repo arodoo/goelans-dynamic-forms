@@ -10,13 +10,6 @@
   <form method="post" action="ajax-handler.php" enctype="multipart/form-data">
     <input type="hidden" name="form_id" value="8">
 
-    <!-- Row 1: Header -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <h2 class="text-center">Je loue, sous-loue, partage mon commerce ou mon bureau. <br>Une belle opportunité pour collaborer ensemble</h2>
-      </div>
-    </div>
-
     <!-- Section 1: Activity Information -->
     <div class="card mb-4" id="activity-section">
       <div class="card-header bg-light">
